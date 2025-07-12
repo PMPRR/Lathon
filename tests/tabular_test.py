@@ -1,4 +1,4 @@
-from lathon.tables import Tabular
+from lathon import Tabular
 
 tab = Tabular("c|l|   c")
 tab.addRow((1, 2, 3))
