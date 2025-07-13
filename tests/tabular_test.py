@@ -12,3 +12,9 @@ def test_add_row_greater_than_spec():
     with pytest.raises(AssertionError):
         row = [1, 2, 3]
         tab.addRow(row)
+
+
+def test_column_spec_char_not_allowed():
+
+    with pytest.raises(AssertionError):
+        tab = Tabular("o|||c")

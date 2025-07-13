@@ -1,5 +1,5 @@
-from environment import Environment
-from packages import add_package
+from lathon.environment import Environment
+from lathon.packages import add_package
 
 
 class Tabular(Environment):
@@ -21,7 +21,7 @@ class Tabular(Environment):
 
         shortened_column_spec = columns_spec.replace(" ", "")
         shortened_column_spec = shortened_column_spec.replace("|", "")
-        self.lenght = len(shortened_column_spec)
+        self.length = len(shortened_column_spec)
 
         super().__init__(name="tabular", mandatory_arguments=columns_spec)
         self.rows: list[list] = None
@@ -35,16 +35,16 @@ class Tabular(Environment):
         A list of elements to be added to the table
         """
 
-        if self.rows is None:
-            self.rows = [row]
-            return
-
-        if len(self.rows[0]) > self.lenght:
+        if len(row) > self.length:
             raise AssertionError(
-                f"The row could not be added, expected at most {len(self.rows)} items, received {len(row)} items"
+                f"The row could not be added, expected at most {self.length} items, received {len(row)} items"
             )
 
-        self.rows.append(row)
+        if self.rows is None:
+            self.rows = [row]
+        else:
+            self.rows.append(row)
+
         return
 
     def _dumps_text(self):
