@@ -32,7 +32,7 @@ class Environment:
         text = (
             text
             if self._mandatory_arguments is None
-            else text + f"[{self._mandatory_arguments}]"
+            else text + f"{{{self._mandatory_arguments}}}"
         )
 
         # Adds inside text whith a "\t"

@@ -1,4 +1,25 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [project]
 name = "lathon"
+version = "0.0.1"
+authors = [
+    { name="Paulo Ramalho", email="paulodemelo2006@gmail.com" },
+]
 description = "A latex automation package"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "License :: OSI Approved :: MIT License"
+]
 
+[project.urls]
+Homepage = "https://github.com/PMPRR/Lathon"
+Issues = "https://github.com/PMPRR/Lathon"
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+]

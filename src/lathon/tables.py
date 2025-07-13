@@ -1,9 +1,17 @@
-from lathon.environment import Environment
+from environment import Environment
+from packages import add_package
 
 
 class Tabular(Environment):
+    """
+    \\begin{tabular}{columns_specs}
 
-    def __init__(self, columns_spec: str = None):
+    \\end{tabular}
+
+
+    """
+
+    def __init__(self, columns_spec: str, booktabs: bool = False):
 
         columns_spec = columns_spec.replace(" ", "")
         ALL_POSSIBLE_COL_SPECS = ("|", "r", "l", "c")
@@ -15,7 +23,7 @@ class Tabular(Environment):
         shortened_column_spec = shortened_column_spec.replace("|", "")
         self.lenght = len(shortened_column_spec)
 
-        super().__init__(name="tabular", optional_arguments=columns_spec)
+        super().__init__(name="tabular", mandatory_arguments=columns_spec)
         self.rows: list[list] = None
         return
 
@@ -31,9 +39,9 @@ class Tabular(Environment):
             self.rows = [row]
             return
 
-        if len(self.rows[0]) != self.lenght:
+        if len(self.rows[0]) > self.lenght:
             raise AssertionError(
-                f"The row could not be added, expected {len(self.rows)}, received {len(row)}"
+                f"The row could not be added, expected at most {len(self.rows)} items, received {len(row)} items"
             )
 
         self.rows.append(row)
@@ -49,3 +57,10 @@ class Tabular(Environment):
             text += r" \\"
 
         return text
+
+
+class Table(Environment):
+
+    def __init__(self, columns_spec: str):
+
+        return
